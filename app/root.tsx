@@ -8,7 +8,6 @@ import { Outlet, useLoaderData } from "@remix-run/react";
 import globalStylesUrl from "@/styles/global.css";
 
 import { Document, ErrorBoundary, CatchBoundary } from "@/components/root";
-import Home from "./components/Home";
 
 export const links: LinksFunction = () => {
   return [
@@ -39,7 +38,6 @@ const App = () => {
   let cookies = useLoaderData();
   return (
     <Document cookies={cookies}>
-      <Home />
       <Outlet />
     </Document>
   );

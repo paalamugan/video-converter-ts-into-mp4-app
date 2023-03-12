@@ -1,5 +1,3 @@
-import { InputURL } from "@/components/inputs/InputURL";
-import { SelectFormat } from "@/components/inputs/SelectFormat";
 import {
   Button,
   Container,
@@ -14,10 +12,12 @@ import {
 } from "@chakra-ui/react";
 import { useFetcher } from "@remix-run/react";
 import { ImSearch } from "react-icons/im";
-import { DownloadOptions } from "./DownloadOptions";
-import { VideoSection } from "./VideoSection";
+import { InputURL } from "@/components/inputs/InputURL";
+import { SelectFormat } from "@/components/inputs/SelectFormat";
+import { DownloadOptions } from "@/components/DownloadOptions";
+import { VideoSection } from "@/components/VideoSection";
 
-export default function Home() {
+export default function Index() {
   const videoFetcher = useFetcher();
 
   const isLoading = videoFetcher.state === "submitting";
