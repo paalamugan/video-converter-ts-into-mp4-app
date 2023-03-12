@@ -3,15 +3,14 @@ import type { LoaderArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import path from "path";
 import fs from "fs";
-import ffprobePath from "@ffprobe-installer/ffprobe";
 export async function loader({ request }: LoaderArgs) {
+  const ffprobePath = require("@ffprobe-installer/ffprobe").path;
   console.log("🚀 ~ file: list.ts:7 ~ ffprobePath:", ffprobePath);
   try {
     const dir = path.join(process.cwd(), "node_modules");
     const files = fs.readdirSync(dir);
     return json({
       files,
-      ffprobePath,
     });
   } catch (error: unknown) {
     console.log("error ❌", { error });
