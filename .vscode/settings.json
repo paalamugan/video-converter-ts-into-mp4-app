@@ -1,0 +1,13 @@
+{
+  "cSpell.words": [
+    "datasources",
+    "ffprobe",
+    "healthcheck",
+    "isbot",
+    "Pipeable"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.tabSize": 2
+}
