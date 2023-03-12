@@ -29,8 +29,12 @@ export const DownloadOptions: FC<DownloadOptionsProps> = ({ url, format }) => {
         >
           Save as Video
         </MenuItem>
-        <MenuItem icon={<FaVideo />}>Video Only</MenuItem>
-        <MenuItem icon={<AiFillAudio />}>Audio Only</MenuItem>
+        <MenuItem icon={<FaVideo />} isDisabled>
+          Video Only
+        </MenuItem>
+        <MenuItem icon={<AiFillAudio />} isDisabled>
+          Audio Only
+        </MenuItem>
       </MenuList>
     </Menu>
   );
