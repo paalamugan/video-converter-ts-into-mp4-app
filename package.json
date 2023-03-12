@@ -1,6 +1,6 @@
 {
   "name": "video-converter-ts-into-mp4-app",
-  "description": "Convert media ts files to mp4 videos and download them using remix",
+  "description": "Convert media .ts files into .mp4 videos and download them using remix",
   "sideEffects": false,
   "scripts": {
     "build": "run-s build:*",
