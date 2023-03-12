@@ -7,10 +7,15 @@ import { OUTPUT_DIR } from "@/constants/common";
 export async function loader({ request }: LoaderArgs) {
   try {
     const videoDir = path.resolve(OUTPUT_DIR);
+    if (!fse.existsSync(videoDir)) {
+      return json({
+        message: "No files to delete.",
+      });
+    }
     const files = fse.readdirSync(videoDir);
     fse.removeSync(videoDir);
     return json({
-      message: `Successfully Deleted ${files.length} files.`,
+      message: `Successfully deleted ${files.length} files.`,
     });
   } catch (error: unknown) {
     console.log("error ❌", { error });
