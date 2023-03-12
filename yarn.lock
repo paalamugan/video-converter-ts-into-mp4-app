@@ -9944,10 +9944,10 @@ vfile@^5.0.0:
     unist-util-stringify-position "^3.0.0"
     vfile-message "^3.0.0"
 
-video-converter-ts-into-mp4@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/video-converter-ts-into-mp4/-/video-converter-ts-into-mp4-0.2.6.tgz#7a33d4d71b875a53a947f131af6f9b2b503416b2"
-  integrity sha512-f9qAFS3W6QAvqa/4Izsn1tINdlvsxguf73wM06MhnqRNTW9ctLqjcqadDlFfT9828MtBhWvQZcWLN/z5tY00VQ==
+video-converter-ts-into-mp4@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/video-converter-ts-into-mp4/-/video-converter-ts-into-mp4-0.2.7.tgz#5076d7ba54b317e398be7970648c697a944c78cf"
+  integrity sha512-zcgd/updHLhLmWFacI6QbXgTI3h9VjAg5e3IpnK788Xl35p1WPb9i3fBdqKRFjcqeXbuYnT9d0c9Om9lB1mreg==
   dependencies:
     "@ffprobe-installer/ffprobe" "^2.0.0"
     ffmpeg-static "^5.1.0"
