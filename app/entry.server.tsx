@@ -1,7 +1,10 @@
+import { renderToString } from "react-dom/server";
 import { CacheProvider } from "@emotion/react";
+import createEmotionServer from "@emotion/server/create-instance";
 import { RemixServer } from "@remix-run/react";
 import type { EntryContext } from "@remix-run/server-runtime";
 import handleVercelRemixRequest from "@vercel/remix-entry-server";
+import { ServerStyleContext } from "./styles/context";
 import { createEmotionCache } from "./styles/createEmotionCache";
 
 export default function (
@@ -11,11 +14,26 @@ export default function (
   remixContext: EntryContext
 ) {
   const emotionCache = createEmotionCache();
-  const remixServer = (
-    <CacheProvider value={emotionCache}>
-      <RemixServer context={remixContext} url={request.url} />
-    </CacheProvider>
+  const { extractCriticalToChunks } = createEmotionServer(emotionCache);
+
+  const html = renderToString(
+    <ServerStyleContext.Provider value={null}>
+      <CacheProvider value={emotionCache}>
+        <RemixServer context={remixContext} url={request.url} />
+      </CacheProvider>
+    </ServerStyleContext.Provider>
   );
+
+  const chunks = extractCriticalToChunks(html);
+
+  const remixServer = (
+    <ServerStyleContext.Provider value={chunks.styles}>
+      <CacheProvider value={emotionCache}>
+        <RemixServer context={remixContext} url={request.url} />
+      </CacheProvider>
+    </ServerStyleContext.Provider>
+  );
+
   return handleVercelRemixRequest(
     request,
     responseStatusCode,
@@ -34,6 +52,7 @@ export default function (
 // import createEmotionServer from "@emotion/server/create-instance";
 
 // import { createEmotionCache } from "@/styles/createEmotionCache";
+// import { ServerStyleContext } from "./styles/context";
 
 // const ABORT_DELAY = 5000;
 

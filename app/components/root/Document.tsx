@@ -9,7 +9,6 @@ import {
 import type { ReactNode } from "react";
 import { useMemo, useRef } from "react";
 import { useContext, useEffect } from "react";
-import { Analytics } from "@vercel/analytics/react";
 
 import ChakraProvider from "@/providers/ChakraProvider";
 
@@ -96,7 +95,6 @@ export const Document = withEmotionCache(
           <ScrollRestoration />
           <Scripts />
           {process.env.NODE_ENV === "development" && <LiveReload />}
-          <Analytics />
         </body>
       </html>
     );
