@@ -5555,11 +5555,6 @@ ffprobe-client@^1.1.6:
   resolved "https://registry.yarnpkg.com/ffprobe-client/-/ffprobe-client-1.1.6.tgz#5fad0b148aa82bd8c855447de08a2bff02864e01"
   integrity sha512-n+wNlD9QC0nHsBUJGYljYAB1gwtuNxXQh0V4Am6M2T3h8Is7qR2hwrrC5Pjc9YNE4MpIslaQUe7+c9wPCarVJQ==
 
-ffprobe-static@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ffprobe-static/-/ffprobe-static-3.1.0.tgz#982cfa1de111a4d6043f6fc208f64a82b53034c9"
-  integrity sha512-Dvpa9uhVMOYivhHKWLGDoa512J751qN1WZAIO+Xw4L/mrUSPxS4DApzSUDbCFE/LUq2+xYnznEahTd63AqBSpA==
-
 figures@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/figures/-/figures-3.2.0.tgz#625c18bd293c604dc4a8ddb2febf0c88341746af"
@@ -9949,14 +9944,14 @@ vfile@^5.0.0:
     unist-util-stringify-position "^3.0.0"
     vfile-message "^3.0.0"
 
-video-converter-ts-into-mp4@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/video-converter-ts-into-mp4/-/video-converter-ts-into-mp4-0.2.2.tgz#6b8a39c805b84e9e579d10fb034cfb5cbbd0ac94"
-  integrity sha512-kwX4JrR6OKehTaZ7bF2Xqhq/6jw1u/7Vv5vtNu62hPxA5mGfWtxD0cEKWTuxHeabFZn3GOYxOdxg1xSise6LnQ==
+video-converter-ts-into-mp4@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/video-converter-ts-into-mp4/-/video-converter-ts-into-mp4-0.2.3.tgz#f9fec64ecea5a21d1c3bc3158bbad39cf2394222"
+  integrity sha512-zlflDfSg5WMsH/LpoMwHi3U0v02X/AXkjAG6oNQlH92tk8O8OlOnzr/IEmzoJGa2cATIQB1v5IFgIyWHE8SkkA==
   dependencies:
+    "@ffprobe-installer/ffprobe" "^2.0.0"
     ffmpeg-static "^5.1.0"
     ffprobe-client "^1.1.6"
-    ffprobe-static "^3.1.0"
     fluent-ffmpeg "^2.1.2"
     fs-extra "^11.1.0"
 

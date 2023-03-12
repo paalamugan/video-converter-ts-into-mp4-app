@@ -19,7 +19,6 @@
     "@emotion/react": "^11",
     "@emotion/server": "^11",
     "@emotion/styled": "^11",
-    "@ffprobe-installer/ffprobe": "^2.0.0",
     "@remix-run/node": "^1.14.1",
     "@remix-run/react": "^1.14.1",
     "@remix-run/vercel": "^1.14.1",
@@ -31,7 +30,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
-    "video-converter-ts-into-mp4": "^0.2.2"
+    "video-converter-ts-into-mp4": "^0.2.3"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.4.4",
