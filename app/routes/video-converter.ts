@@ -27,14 +27,14 @@ export const action = async ({ request }: ActionArgs) => {
       tmpDir: TMP_DIR,
     });
 
-    if (!result?.format.filename) {
+    if (!result?.path) {
       throw new CustomError(
         "Something went wrong, Failed to convert a video!",
         500
       );
     }
 
-    const id = path.basename(result.format.filename).split(".")[0];
+    const id = path.basename(result.path).split(".")[0];
 
     return json({
       url: `${urlInstance.origin}/video/${id}`,
