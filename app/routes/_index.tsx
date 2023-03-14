@@ -16,13 +16,43 @@ import { InputURL } from "@/components/inputs/InputURL";
 import { SelectFormat } from "@/components/inputs/SelectFormat";
 import { DownloadOptions } from "@/components/DownloadOptions";
 import { VideoSection } from "@/components/VideoSection";
+import { useEffect } from "react";
+import { useLocalStorage } from "@/hooks/useStorage";
+import { LOCAL_STORAGE_TMP_VIDEO_KEY } from "@/constants/common";
 
 export default function Index() {
   const videoFetcher = useFetcher();
+  const deleteFetcher = useFetcher();
 
   const isLoading = videoFetcher.state === "submitting";
   const { url, format } = videoFetcher.data || {};
   const error = videoFetcher.data?.error;
+  const [videoIds, setVideoIds] = useLocalStorage<string[]>(
+    LOCAL_STORAGE_TMP_VIDEO_KEY,
+    []
+  );
+
+  useEffect(() => {
+    if (!url) return;
+    const videoId = url.split("/").at(-1) as string;
+    if (videoId) {
+      setVideoIds((prev) => [...new Set([...prev, videoId])]);
+    }
+  }, [url, setVideoIds, videoIds]);
+
+  useEffect(() => {
+    const listener = (event: Event) => {
+      const params = new URLSearchParams();
+      params.set("ids", videoIds.join(","));
+      deleteFetcher.load(`/api/delete-video?${params}`);
+      setVideoIds([]);
+    };
+
+    window.addEventListener("beforeunload", listener);
+    return () => {
+      window.removeEventListener("beforeunload", listener);
+    };
+  }, [setVideoIds, videoIds, deleteFetcher]);
 
   return (
     <Container maxW="full" py={10}>
@@ -34,7 +64,7 @@ export default function Index() {
         <GridItem display="grid" gap={4}>
           <Stack>
             <Heading as="h3" size="md" py={"4px"}>
-              Enter Information
+              User Section
             </Heading>
             <Divider
               borderColor={useColorModeValue("gray.400", "gray.500")}
@@ -61,7 +91,7 @@ export default function Index() {
           <Stack>
             <Flex justify="space-between" align="center">
               <Heading as="h2" size="md">
-                Show Video
+                Video Section
               </Heading>
               <DownloadOptions url={url} format={format} />
             </Flex>

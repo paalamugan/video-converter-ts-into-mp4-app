@@ -14,9 +14,10 @@ export const action = async ({ request }: ActionArgs) => {
     const formData = await request.formData();
     const urlInstance = new URL(request.url);
 
-    const inputUrl = formData.get("url") as string;
-    const format = formData.get("format") as string;
+    let inputUrl = formData.get("url")?.toString() || "";
+    const format = formData.get("format")?.toString() || "mp4";
 
+    inputUrl = inputUrl.trim();
     if (!/https?:\/\/.+/.test(inputUrl)) {
       throw new CustomError("Url must start with http:// or https://", 400);
     }

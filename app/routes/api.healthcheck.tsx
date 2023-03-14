@@ -1,4 +1,6 @@
 // learn more: https://fly.io/docs/reference/configuration/#services-http_checks
+import { errorResponse } from "@/helper/error";
+import type { ErrorType } from "@/types/common";
 import type { LoaderArgs } from "@remix-run/server-runtime";
 
 export async function loader({ request }: LoaderArgs) {
@@ -17,6 +19,6 @@ export async function loader({ request }: LoaderArgs) {
     return new Response("OK");
   } catch (error: unknown) {
     console.log("healthcheck ❌", { error });
-    return new Response("ERROR", { status: 500 });
+    return errorResponse(error as ErrorType);
   }
 }
