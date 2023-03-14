@@ -17,8 +17,8 @@ import { SelectFormat } from "@/components/inputs/SelectFormat";
 import { DownloadOptions } from "@/components/DownloadOptions";
 import { VideoSection } from "@/components/VideoSection";
 import { useEffect } from "react";
-import { useLocalStorage } from "@/hooks/useStorage";
-import { LOCAL_STORAGE_TMP_VIDEO_KEY } from "@/constants/common";
+
+const tmpVideoIds = new Set();
 
 export default function Index() {
   const videoFetcher = useFetcher();
@@ -27,32 +27,27 @@ export default function Index() {
   const isLoading = videoFetcher.state === "submitting";
   const { url, format } = videoFetcher.data || {};
   const error = videoFetcher.data?.error;
-  const [videoIds, setVideoIds] = useLocalStorage<string[]>(
-    LOCAL_STORAGE_TMP_VIDEO_KEY,
-    []
-  );
 
   useEffect(() => {
     if (!url) return;
     const videoId = url.split("/").at(-1) as string;
     if (videoId) {
-      setVideoIds((prev) => [...new Set([...prev, videoId])]);
+      tmpVideoIds.add(videoId);
     }
-  }, [url, setVideoIds, videoIds]);
+  }, [url]);
 
   useEffect(() => {
     const listener = (event: Event) => {
       const params = new URLSearchParams();
-      params.set("ids", videoIds.join(","));
+      params.set("ids", [...tmpVideoIds].join(","));
       deleteFetcher.load(`/api/delete-video?${params}`);
-      setVideoIds([]);
     };
 
     window.addEventListener("beforeunload", listener);
     return () => {
       window.removeEventListener("beforeunload", listener);
     };
-  }, [setVideoIds, videoIds, deleteFetcher]);
+  }, [deleteFetcher]);
 
   return (
     <Container maxW="full" py={10}>
