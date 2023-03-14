@@ -3,7 +3,10 @@ import { startTransition, StrictMode, useState } from "react";
 import { hydrateRoot } from "react-dom/client";
 import { CacheProvider } from "@emotion/react";
 
-import { createEmotionCache } from "./styles/createEmotionCache";
+import {
+  createEmotionCache,
+  defaultEmotionCache,
+} from "./styles/createEmotionCache";
 import { ClientStyleContext } from "./styles/context";
 
 interface ClientCacheProviderProps {
@@ -11,8 +14,7 @@ interface ClientCacheProviderProps {
 }
 
 function ClientCacheProvider({ children }: ClientCacheProviderProps) {
-  const emotionCache = createEmotionCache();
-  const [cache, setCache] = useState(emotionCache);
+  const [cache, setCache] = useState(defaultEmotionCache);
 
   function reset() {
     setCache(createEmotionCache());

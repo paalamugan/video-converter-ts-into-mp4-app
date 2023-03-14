@@ -1,5 +1,6 @@
 import type { FlexProps } from "@chakra-ui/react";
 import { Box, Flex, HStack, Heading } from "@chakra-ui/react";
+import { ClientOnly } from "remix-utils";
 
 import ThemeToggle from "./ThemeToggle";
 
@@ -19,7 +20,7 @@ export const Header = (props: FlexProps) => {
       </Box>
 
       <HStack spacing={{ base: "0", md: "3" }}>
-        <ThemeToggle />
+        <ClientOnly fallback={<></>}>{() => <ThemeToggle />}</ClientOnly>
       </HStack>
     </Flex>
   );

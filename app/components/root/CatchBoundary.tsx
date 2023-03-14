@@ -6,9 +6,8 @@ import {
   Stack,
   Text,
   useColorMode,
-  Link as ChakraLink,
 } from "@chakra-ui/react";
-import { useCatch } from "@remix-run/react";
+import { Link, useCatch } from "@remix-run/react";
 import type { CatchBoundaryComponent } from "@remix-run/react";
 
 import { Document } from "./Document";
@@ -69,7 +68,7 @@ export const CatchBoundary: CatchBoundaryComponent = () => {
           </Box>
 
           <Box textAlign="center" marginTop={4}>
-            <ChakraLink href="/">
+            <Link to="/">
               <Button
                 backgroundColor={
                   colorMode === "light" ? "gray.300" : "teal.500"
@@ -77,7 +76,7 @@ export const CatchBoundary: CatchBoundaryComponent = () => {
               >
                 Go to Home
               </Button>
-            </ChakraLink>
+            </Link>
           </Box>
         </Box>
       </Stack>

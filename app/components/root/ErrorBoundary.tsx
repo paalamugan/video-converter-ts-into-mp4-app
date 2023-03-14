@@ -15,7 +15,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
           textAlign="center"
           wordBreak="break-word"
         >
-          [ErrorBoundary]: There was an error1: {error.message}
+          [ErrorBoundary]: There was an error: {error.message}
         </Heading>
       </Flex>
     </Document>

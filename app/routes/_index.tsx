@@ -41,7 +41,7 @@ export default function Index() {
               borderRadius="base"
             />
           </Stack>
-          <videoFetcher.Form method="post" action="/video-converter">
+          <videoFetcher.Form method="post" action="/api/video-converter">
             <VStack gap={4} alignItems={"start"}>
               <InputURL />
               <SelectFormat />
