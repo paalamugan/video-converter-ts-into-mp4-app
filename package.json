@@ -57,7 +57,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "remix-utils": "^6.0.0",
-    "video-converter-ts-into-mp4": "./video-converter-ts-into-mp4-0.3.11.tgz"
+    "video-converter-ts-into-mp4": "^0.3.2"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.4.4",
