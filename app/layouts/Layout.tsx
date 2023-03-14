@@ -22,6 +22,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         area={"header"}
         as="header"
         bg={useColorModeValue("white", "gray.900")}
+        color={useColorModeValue("gray.900", "gray.200")}
         borderBottomWidth="1px"
         borderBottomColor={useColorModeValue("gray.200", "gray.700")}
       >
@@ -43,6 +44,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         area={"footer"}
         as="footer"
         bg={useColorModeValue("white", "gray.900")}
+        color={useColorModeValue("gray.900", "gray.200")}
         borderTopWidth="1px"
         borderTopColor={useColorModeValue("gray.200", "gray.700")}
       >

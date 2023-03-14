@@ -1,7 +1,7 @@
 {
   "name": "video-converter-ts-into-mp4-app",
+  "version": "0.0.1",
   "description": "Convert media .ts files into .mp4 videos and download them using remix",
-  "sideEffects": false,
   "scripts": {
     "build": "run-s build:*",
     "build:remix": "remix build",
@@ -28,7 +28,7 @@
     "up-latest": "yarn up --latest",
     "release": "cross-env HUSKY=0 standard-version",
     "push-release": "git push --follow-tags origin main",
-    "prepare": "husky install"
+    "husky": "husky install"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
@@ -43,6 +43,7 @@
     "@remix-run/serve": "^1.14.0",
     "@remix-run/server-runtime": "^1.14.0",
     "@remix-run/vercel": "^1.14.0",
+    "@vercel/remix-entry-server": "^0.1.0",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
@@ -55,7 +56,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
-    "video-converter-ts-into-mp4": "^0.2.9"
+    "remix-utils": "^6.0.0",
+    "video-converter-ts-into-mp4": "./video-converter-ts-into-mp4-0.3.11.tgz"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.4.4",
@@ -112,7 +114,7 @@
   "packageManager": "yarn@1.22.19",
   "author": "paalamugan",
   "engines": {
-    "node": ">=14",
+    "node": ">=16",
     "yarn": ">=1.22",
     "npm": "use yarn"
   },

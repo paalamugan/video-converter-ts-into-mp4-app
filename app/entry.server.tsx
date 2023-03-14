@@ -24,7 +24,6 @@ export default function handleRequest(
   return new Promise((resolve, reject) => {
     let didError = false;
     const emotionCache = createEmotionCache();
-
     const { pipe, abort } = renderToPipeableStream(
       <CacheProvider value={emotionCache}>
         <RemixServer context={remixContext} url={request.url} />

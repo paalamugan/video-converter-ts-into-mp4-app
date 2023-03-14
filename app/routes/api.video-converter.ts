@@ -37,7 +37,7 @@ export const action = async ({ request }: ActionArgs) => {
     const id = path.basename(result.path).split(".")[0];
 
     return json({
-      url: `${urlInstance.origin}/video/${id}`,
+      url: `${urlInstance.origin}/api/video/${id}`,
       format: format,
     });
   } catch (err) {
