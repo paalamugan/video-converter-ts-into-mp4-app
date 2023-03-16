@@ -15,7 +15,7 @@ const convertVideoOrAudioOnly = (
 ) => {
   const command = ffmpeg().addInput(inputPath);
   if (type === "audio") {
-    command.noVideo().outputFormat("mp3");
+    command.audioCodec("copy").noVideo().outputFormat("mp3");
   } else if (type === "video") {
     command
       .videoCodec("copy")
