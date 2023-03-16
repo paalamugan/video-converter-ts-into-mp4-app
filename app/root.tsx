@@ -23,7 +23,7 @@ export const links: LinksFunction = () => {
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Video Converter TS into Mp4",
+  title: "Video Converter",
   description: "Convert media ts files to mp4 videos and download them",
   viewport: "width=device-width,initial-scale=1",
 });

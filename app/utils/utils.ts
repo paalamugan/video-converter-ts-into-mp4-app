@@ -71,8 +71,8 @@ export function validateEmail(email: unknown): email is string {
   return typeof email === "string" && email.length > 3 && email.includes("@");
 }
 
-export const concatArrayString = (
-  array: string[],
+export const concatArrayString = <T extends string>(
+  array: T[] | readonly T[],
   delimiter: string = ", "
 ) => {
   return array.join(delimiter);

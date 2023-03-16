@@ -1,22 +1,45 @@
 import { MEDIA_TYPES, OUTPUT_DIR, VIDEO_FORMATS } from "@/constants/common";
 import { CustomError, errorResponse } from "@/helper/error";
-import type { ErrorType } from "@/types/common";
+import type { ErrorType, MediaType, VideoFormat } from "@/types/common";
 import { concatArrayString } from "@/utils/utils";
 import { Response } from "@remix-run/node";
 import type { LoaderArgs } from "@remix-run/server-runtime";
 import fse from "fs-extra";
 import path from "path";
+import { ffmpeg } from "video-converter-ts-into-mp4";
+
+const convertVideoOrAudioOnly = (
+  inputPath: string,
+  type: MediaType,
+  format: VideoFormat = "mp4"
+) => {
+  const command = ffmpeg().addInput(inputPath);
+  if (type === "audio") {
+    command.noVideo().outputFormat("mp3");
+  } else if (type === "video") {
+    command
+      .videoCodec("copy")
+      .noAudio()
+      .outputOption("-movflags frag_keyframe+empty_moov")
+      .outputOption("-bsf:a aac_adtstoasc")
+      .outputFormat(format);
+  }
+  return command.pipe();
+};
 
 export async function loader({ params, request }: LoaderArgs) {
   try {
     const id = params.id || "default";
     const url = new URL(request.url);
-    const query = Object.fromEntries(url.searchParams);
+    const query = Object.fromEntries(url.searchParams) as {
+      type: MediaType;
+      format: VideoFormat;
+    };
     const download = query.hasOwnProperty("download");
     const type = query.type || "audio-and-video"; // audio, video, audio-and-video
     const format = query.format || "mp4"; // mp4, avi, mov
 
-    if (!VIDEO_FORMATS.includes(format.toLowerCase())) {
+    if (!VIDEO_FORMATS.includes(format)) {
       throw new CustomError(
         `Invalid format. Format must be either one of this values: "${concatArrayString(
           VIDEO_FORMATS
@@ -42,6 +65,18 @@ export async function loader({ params, request }: LoaderArgs) {
         )}".`,
         400
       );
+    }
+
+    if (type === "audio" || type === "video") {
+      const stream = convertVideoOrAudioOnly(videoPath, type, format);
+      const mediaFormat = type === "audio" ? "mp3" : format;
+      return new Response(stream, {
+        status: 200,
+        headers: {
+          "Content-Type": `${type}/${mediaFormat}`,
+          "Content-Disposition": `attachment; filename=${id}-${type}-only.${mediaFormat}`,
+        },
+      });
     }
 
     const stat = fse.statSync(videoPath);

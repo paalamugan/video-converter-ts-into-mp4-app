@@ -23,7 +23,6 @@ const tmpVideoIds = new Set();
 export default function Index() {
   const videoFetcher = useFetcher();
   const deleteFetcher = useFetcher();
-
   const isLoading = videoFetcher.state === "submitting";
   const { url, format } = videoFetcher.data || {};
   const error = videoFetcher.data?.error;
@@ -38,8 +37,10 @@ export default function Index() {
 
   useEffect(() => {
     const listener = (event: Event) => {
+      const videoIds = [...tmpVideoIds];
+      if (!videoIds.length) return;
       const params = new URLSearchParams();
-      params.set("ids", [...tmpVideoIds].join(","));
+      params.set("ids", videoIds.join(","));
       deleteFetcher.load(`/api/delete-video?${params}`);
     };
 

@@ -1,7 +1,7 @@
 import type { ErrorType } from "@/types/common";
 import { json } from "@remix-run/server-runtime";
 
-export class CustomError extends Error {
+export class CustomError extends Error implements ErrorType {
   status: number;
   constructor(message: string, status: number = 500) {
     super(message);
@@ -10,6 +10,9 @@ export class CustomError extends Error {
 }
 
 export const errorResponse = (error: ErrorType) => {
+  if (error.code === "ENOENT") {
+    error.message = "Video file not found!";
+  }
   return json(
     {
       error: {

@@ -10,8 +10,16 @@ import { errorResponse } from "@/helper/error";
 export async function loader({ request }: LoaderArgs) {
   try {
     const urlInstance = new URL(request.url);
-    const type = urlInstance.searchParams.get("type");
+    let type = urlInstance.searchParams.get("type");
+    type = type?.trim() === "all" ? "all" : "single";
+
     const videoIds = urlInstance.searchParams.get("ids") || "";
+
+    if (process.env.NODE_ENV === "development" && type !== "all") {
+      return json({
+        message: `Not allowed in development mode!, But If you intend to delete all tmp files, use this api "${urlInstance.origin}${urlInstance.pathname}?type=all".`,
+      });
+    }
 
     const videoDir = path.resolve(OUTPUT_DIR);
     const files = fse.readdirSync(videoDir);

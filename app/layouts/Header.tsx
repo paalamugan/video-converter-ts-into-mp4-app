@@ -15,7 +15,7 @@ export const Header = (props: FlexProps) => {
       <Box display={{ base: "flex" }}>
         {/* <Image src={logo} alt="logo" width={40} height={40} /> */}
         <Heading as={"h1"} size="lg" ml={2}>
-          Video Converter Ts Into Mp4
+          Video Converter
         </Heading>
       </Box>
 

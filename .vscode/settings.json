@@ -1,9 +1,12 @@
 {
   "cSpell.words": [
+    "adtstoasc",
     "datasources",
     "ffprobe",
     "healthcheck",
     "isbot",
+    "moov",
+    "movflags",
     "Pipeable"
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",

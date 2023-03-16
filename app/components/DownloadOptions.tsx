@@ -29,10 +29,20 @@ export const DownloadOptions: FC<DownloadOptionsProps> = ({ url, format }) => {
         >
           Save as Video
         </MenuItem>
-        <MenuItem icon={<FaVideo />} isDisabled>
+        <MenuItem
+          icon={<FaVideo />}
+          as={"a"}
+          href={`${url}?type=video&format=${format}&download`}
+          download
+        >
           Video Only
         </MenuItem>
-        <MenuItem icon={<AiFillAudio />} isDisabled>
+        <MenuItem
+          icon={<AiFillAudio />}
+          as={"a"}
+          href={`${url}?type=audio&format=${format}&download`}
+          download
+        >
           Audio Only
         </MenuItem>
       </MenuList>
